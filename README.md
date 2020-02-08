@@ -9,7 +9,9 @@ from source.schemas import Schema
 
 
 class ContactSchema(Schema):
+    # Required String field
     first_name: str
+    # Optional String field. Default = ""
     last_name: str = ""
 
 
