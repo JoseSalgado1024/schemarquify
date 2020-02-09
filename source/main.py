@@ -44,6 +44,6 @@ class Contact(DataType):
             contact_file.write(json.dumps(self.cleaned_data, indent=4))
 
 
-for contact in CONTACTS:
-    contact = Contact(**contact)
-    contact.save()
+# for contact in CONTACTS:
+#     contact = Contact(**contact)
+#     contact.save()
