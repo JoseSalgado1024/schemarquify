@@ -3,6 +3,10 @@ Schemarquify
 
 _Work in progress!_
 
+> Here is my idea, what if we could write all ours business strategy in python classes just for one time, and shared in between frameworks?
+ 
+
+
 ToC
 + [How to Install Schemarquify](#install)
 + [Usage](#usage)
@@ -65,4 +69,14 @@ class Contact(DataType):
 for contact in CONTACTS:
     contact = Contact(**contact)
     contact.save()
+```
+
+## File `contact.json` content
+
+```json
+{
+    "first_name": "Tony",
+    "last_name": "Stark",
+    "surname": "IronMan"
+}
 ```
