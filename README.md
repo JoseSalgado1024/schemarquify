@@ -3,7 +3,7 @@ Schemarquify
 
 _Work in progress!_
 
-> Here is my idea, what if we could write all our business strategy in python classes just for one time, and share it between frameworks?
+> Here is my idea, what if we could write all our business strategy in python classes just for one time, and share them to be used within any framework like any other Python's library?
  
 
 
