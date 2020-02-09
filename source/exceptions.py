@@ -12,13 +12,17 @@ class CustomBaseException(Exception):
 
 
 class MissingMetaException(CustomBaseException):
-    """Missing DataType Meta-class."""
+    """Missing DataType Meta-class"""
 
 
 class MissingSerializerException(CustomBaseException):
-    """Missing DataTypeSerializer class."""
+    """Missing DataTypeSerializer class"""
 
 
 class MissingSchemaException(CustomBaseException):
-    """Missing DataTypeSchema class."""
+    """Missing DataTypeSchema class"""
+
+
+class ValidationErrorException(CustomBaseException):
+    """Validation Error"""
 

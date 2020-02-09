@@ -1,13 +1,18 @@
-from typing import List, Any, Callable
+from typing import Dict, List, Any, Callable, Union
 import logging
+
+from source.exceptions import ValidationErrorException as ValidationError
 
 
 logger = logging.getLogger(__name__)
 
 
-class Validator:
+ValidatorListType = List[Dict[str, Union[Callable, str]]]
 
-    add_exception_name: bool = True
+
+class Validator:
+    add_more_info: bool = False
+    add_exception_name: bool = False
     sort_validators: bool = True
     fail_safe: bool = True
     __errors__: List[str] = []
@@ -19,7 +24,7 @@ class Validator:
     def errors(self) -> List[Any]:
         return self.formatted_error_list()
 
-    def discovery_validators(self) -> List[Callable]:
+    def discovery_validators(self) -> ValidatorListType:
         validators = []
         validators_name_list = [m for m in dir(self) if m.startswith("validate_")]
         if self.sort_validators:
@@ -27,28 +32,42 @@ class Validator:
         for validator in validators_name_list:
             validator_fn = getattr(self, validator)
             if callable(validator_fn):
-                validators.append(validator_fn)
+                validators.append(
+                    {
+                        "fn": validator_fn,
+                        "name": validator.replace("resolve_", ""),
+                        "description": validator_fn.__doc__ or "- ",
+                    }
+                )
         return validators
 
-    def validate(self):
+    def perform_validations(self):
         validators = self.discovery_validators()
         for validation in validators:
+            fn = validation["fn"]
+            name = validation["name"]
+            desc = validation["description"]
             try:
-                validation()
+                result = fn()
+                if not result:
+                    raise ValidationError(f'Result: "{result}".')
             except Exception as e:
                 msg = ""
                 if self.add_exception_name:
                     msg = f"{type(e).__name__}. "
-                msg += f"{e}"
+                msg += f'Validation "{name}" fails. {e}'
+                if self.add_more_info:
+                    msg += f"\nMore info: {desc}."
                 self.__errors__.append(msg)
 
     def is_valid(self) -> bool:
         try:
-            self.validate()
+            self.perform_validations()
+            if len(self.errors) > 0:
+                raise ValidationError(", ".join([f"{error}" for error in self.errors]))
             return True
         except Exception as e:
             if self.fail_safe:
-                logger.exception(e)
                 return False
             raise e
 

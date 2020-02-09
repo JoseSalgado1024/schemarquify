@@ -2,9 +2,9 @@ from dataclasses import dataclass, fields
 from typing import Any, Dict, List, Type
 
 from source.exceptions import (
-    MissingMetaException,
-    MissingSerializerException,
-    MissingSchemaException,
+    MissingMetaException as MissingMeta,
+    MissingSerializerException as MissingSerializer,
+    MissingSchemaException as MissingSchema,
 )
 from source.serializers import Serializer
 
@@ -22,12 +22,12 @@ class DataType:
     def __get_meta_class__(self) -> Type:
         _Meta = getattr(self, "Meta", None)
         if not _Meta:
-            raise MissingMetaException()
+            raise MissingMeta()
         return _Meta
 
     def __validate_meta__(self):
         if not hasattr(self._meta, "schema"):
-            raise MissingSchemaException()
+            raise MissingSchema()
 
     def __populate__meta_fields__(self):
         setattr(self._meta, "fields", fields(self.schema))
@@ -35,7 +35,7 @@ class DataType:
     def __init__(self, **inputs):
         _meta = self.__get_meta_class__()
         if not self.serializer_class:
-            raise MissingSerializerException
+            raise MissingSerializer()
         self._meta = _meta()
         self.__validate_meta__()
         self.inputs = inputs
@@ -44,8 +44,15 @@ class DataType:
 
     @property
     def cleaned_data(self) -> dict:
-        serializer = self.serializer_class
-        return serializer(self).serialize()
+        if self.schema.is_valid():
+            serializer = self.serializer_class
+            return serializer(self).serialize()
+
+    def how_to_store(self): ...
+
+    def save(self):
+        if self.schema.is_valid():
+            self.how_to_store()
 
     def fields(self) -> List[Any]:
         return list(self._meta.fields)
