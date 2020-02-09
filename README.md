@@ -3,11 +3,11 @@ Schemarquify
 
 _Work in progress!_
 
-> Here is my idea, what if we could write all ours business strategy in python classes just for one time, and shared in between frameworks?
+> Here is my idea, what if we could write all our business strategy in python classes just for one time, and share it between frameworks?
  
 
 
-ToC
+**ToC**
 + [How to Install Schemarquify](#install)
 + [Usage](#usage)
     - [Create your DataSchema](#create-a-data-schema)
@@ -15,6 +15,9 @@ ToC
     - [Use it!](#validate-data)
     
 # install 
+```bash
+(pyenv) pip install schemarquify
+```
 
 # Usage
 
@@ -22,6 +25,19 @@ ToC
 
 ```python
 from source.schemas import Schema
+
+CONTACTS = [
+    {
+        "first_name": "Tony",
+        "last_name": "Stark",
+        "surname": "IronMan"
+    },
+    {
+        "first_name": "Bruce",
+        "last_name": "Wayne",
+        "surname": "Batman"},
+]
+
 
 class ContactSchema(Schema):
     """My Contact schema"""
