@@ -48,7 +48,8 @@ class DataType:
             serializer = self.serializer_class
             return serializer(self).serialize()
 
-    def how_to_store(self): ...
+    def how_to_store(self):
+        ...
 
     def save(self):
         if self.schema.is_valid():

@@ -25,4 +25,3 @@ class MissingSchemaException(CustomBaseException):
 
 class ValidationErrorException(CustomBaseException):
     """Validation Error"""
-

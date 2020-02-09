@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/josesalgado1024/schemarquify/badge)](https://www.codefactor.io/repository/github/josesalgado1024/schemarquify)
+
 Schemarquify
 ===
 
