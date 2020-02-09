@@ -73,7 +73,7 @@ class Contact(DataType):
     class Meta:
         schema = ContactSchema
 
-    # Override this method to perform data save
+    # Override this method to perform data storage
     def how_to_store(self):
         with open(f"{type(self).__name__}.json".lower(), "w") as contact_file:
             contact_file.write(json.dumps(self.cleaned_data, indent=4))
