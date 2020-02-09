@@ -1,7 +1,7 @@
 import json
 
-from source.data import DataType
-from source.schemas import Schema
+from schemarquify.data import DataType
+from schemarquify.schemas import Schema
 
 CONTACTS = [
     {

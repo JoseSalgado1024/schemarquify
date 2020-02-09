@@ -1,7 +1,7 @@
 from typing import Dict, List, Any, Callable, Union
 import logging
 
-from source.exceptions import ValidationErrorException as ValidationError
+from schemarquify.exceptions import ValidationErrorException as ValidationError
 
 
 logger = logging.getLogger(__name__)

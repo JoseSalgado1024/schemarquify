@@ -26,7 +26,7 @@ _Work in progress!_
 ## Create a Data Schema
 
 ```python
-from source.schemas import Schema
+from schemarquify.schemas import Schema
 
 CONTACTS = [
     {
@@ -69,7 +69,7 @@ class ContactSchema(Schema):
 ## Create a Data Type
 
 ```python
-from source.data import DataType
+from schemarquify.data import DataType
 
 class Contact(DataType):
     class Meta:

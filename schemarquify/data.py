@@ -1,12 +1,12 @@
 from dataclasses import dataclass, fields
 from typing import Any, Dict, List, Type
 
-from source.exceptions import (
+from schemarquify.exceptions import (
     MissingMetaException as MissingMeta,
     MissingSerializerException as MissingSerializer,
     MissingSchemaException as MissingSchema,
 )
-from source.serializers import Serializer
+from schemarquify.serializers import Serializer
 
 
 class DataType:

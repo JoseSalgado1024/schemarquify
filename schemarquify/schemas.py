@@ -1,4 +1,4 @@
-from source.validators import SchemaValidator
+from schemarquify.validators import SchemaValidator
 
 
 class Schema(SchemaValidator):

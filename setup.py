@@ -23,7 +23,7 @@ setup(
     description="Tokko Forms flavor.",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/JoseSalgado1024/schemarquify",
     author="El Jose Salgado",
     author_email="jsalgado@tokko.com",
     install_requires=[
