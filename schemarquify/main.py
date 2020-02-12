@@ -3,9 +3,10 @@ import json
 from schemarquify.data import DataType
 from schemarquify.schemas import Schema
 
+
 CONTACTS = [
     {
-        "first_name": "Tony",
+        "first_name": 1,  # "Tony",
         "last_name": "Stark",
         "surname": "IronMan"
     },
@@ -44,6 +45,6 @@ class Contact(DataType):
             contact_file.write(json.dumps(self.cleaned_data, indent=4))
 
 
-# for contact in CONTACTS:
-#     contact = Contact(**contact)
-#     contact.save()
+for contact in CONTACTS:
+    contact = Contact(**contact)
+    contact.save()

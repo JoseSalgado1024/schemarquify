@@ -39,7 +39,7 @@ class DataType:
         self._meta = _meta()
         self.__validate_meta__()
         self.inputs = inputs
-        self.schema = dataclass(self._meta.schema)(**inputs)
+        self.schema = dataclass(self._meta.schema, init=True)(**inputs)
         self.__populate__meta_fields__()
 
     @property
